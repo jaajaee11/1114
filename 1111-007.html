@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+<style>
+    #wrapper {
+        height: 1000px;
+    }
+</style>
+</head>
+<body>
+    <body>
+        <div class="wrapper">
+            <header id="header">
+                <div class="type1">type1</div>
+                <div class="type2">type2</div>
+                <div class="type3">type3</div>
+            </header>
+            <section id="page1">
+                <h1>main Animation Text1</h1>
+                <p>Sub Animation Text1</p>
+            </section>
+            <section id="page2">
+                <div class="type1">type1</div>
+                <div class="type2">type2</div>
+                <div class="type3">type3</div>
+            </section>
+    <script> 
+ $(function(){
+            let t = 0;
+
+            setTimeout(function(){
+                $("body, html").animate({"scrollTop":"0px"},300,
+                function(){
+                    $("#header").addClass("active");
+                    //제이쿼리 스크롤 이벤트가 들어감
+
+                    $(window).scroll(function(){
+                        t = $(window).scrollTop();
+                        if(t< $("#header").hide().top){
+                            $("#header").addClass("active");
+                        }
+                        else if(t< $("#page1").offset().top+300){
+                            //잘안되서 300을 더해주넛이다
+                            $("#page1").addClass("active");
+                        }
+                        else if(t< $("body, html").height()){
+                            //bodty와 hmlt을 같이 써줘야 브라우저에서 한쪽이안되면 다른한족을 사용한다.
+                            $("#page2").addClass("active");
+                        }
+                        
+                    });
+                });
+            },300);
+
+
+
+    $("#wrapper").scrollBottom(function(){
+  $("p").hide();
+});
+
+$("#show").scrollTop(function(){
+    console.log()
+  $("p").show();
+});
+
+//     $(function(){
+//         $("main").scrollDown(function(){
+//             $('main').on('main',function(e){
+//   e.preventDefault();
+//                     $(main).animate({transform: "translateY(-100px)"});
+//     });
+//     </script>
+</body>
+</html>
